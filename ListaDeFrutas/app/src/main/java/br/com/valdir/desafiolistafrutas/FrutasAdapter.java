@@ -77,13 +77,13 @@ public class FrutasAdapter extends CursorAdapter {
         switch (viewType) {
             case VIEW_TYPE_DESTAQUE: {
                 holder.name.setText(cursor.getString(nameIndex));
-                holder.price.setText("R$ " + String.format("%.2f", cursor.getDouble(priceIndex)));
+                holder.price.setText(context.getString(R.string.txt_dollar_simbolo) + String.format(" %.2f", cursor.getDouble(priceIndex)));
                 Picasso.with(context).load(cursor.getString(imageIndex)).into(holder.image);
                 break;
             }
             case VIEW_TYPE_ITEM: {
                 holder.name.setText(cursor.getString(nameIndex));
-                holder.price.setText("R$ " + String.format("%.2f", cursor.getDouble(priceIndex)));
+                holder.price.setText(context.getString(R.string.txt_dollar_simbolo) + String.format(" %.2f", cursor.getDouble(priceIndex)));
                 Picasso.with(context).load(cursor.getString(imageIndex)).into(holder.image);
                 break;
             }

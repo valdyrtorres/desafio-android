@@ -1,12 +1,12 @@
 package br.com.valdir.desafiolistafrutas.jni;
 
-public class CalculadoraJNI {
+public class CalculeNative {
 
     static {
         System.loadLibrary("cambio-lib");
     }
 
-    public native int somarJNI(int a, int b);
+    public native double asyncConvertToReal(double valueToConvert);
 
     public native int subtrairJNI(int a, int b);
 }

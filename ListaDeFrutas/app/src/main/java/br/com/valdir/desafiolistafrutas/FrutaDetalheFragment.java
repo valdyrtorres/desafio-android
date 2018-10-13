@@ -10,11 +10,11 @@ import android.support.v4.content.Loader;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.squareup.picasso.Picasso;
 import br.com.valdir.desafiolistafrutas.data.FrutasContract;
+import br.com.valdir.desafiolistafrutas.jni.CalculeNative;
 
 public class FrutaDetalheFragment extends Fragment implements LoaderManager.LoaderCallbacks<Cursor> {
 
@@ -25,6 +25,8 @@ public class FrutaDetalheFragment extends Fragment implements LoaderManager.Load
     private TextView nameView;
 
     private TextView priceView;
+
+    private TextView priceViewReal;
 
     private ImageView imageView;
 
@@ -52,6 +54,8 @@ public class FrutaDetalheFragment extends Fragment implements LoaderManager.Load
 
         priceView = view.findViewById(R.id.item_price);
 
+        priceViewReal = view.findViewById(R.id.item_price_real);
+
         imageView = view.findViewById(R.id.item_image);
 
         return view;
@@ -77,6 +81,9 @@ public class FrutaDetalheFragment extends Fragment implements LoaderManager.Load
 
         if (cursor.moveToFirst()) {
 
+            // Criação do objeto que vai chamar o códigonativo
+            CalculeNative calculeNative = new CalculeNative();
+
             int idIndex = cursor.getColumnIndex(FrutasContract.FrutaEntry._ID);
             int nameIndex = cursor.getColumnIndex(FrutasContract.FrutaEntry.COLUMN_NAME);
             int priceIndex = cursor.getColumnIndex(FrutasContract.FrutaEntry.COLUMN_PRICE);
@@ -91,7 +98,8 @@ public class FrutaDetalheFragment extends Fragment implements LoaderManager.Load
                     image, Double.valueOf(price));
 
             nameView.setText(name);
-            priceView.setText("R$ " + String.format("%.2f", Double.valueOf(price)));
+            priceView.setText(getString(R.string.txt_dollar_simbolo) + String.format(" %.2f", Double.valueOf(price)));
+            priceViewReal.setText(getString(R.string.txt_real_simbolo) + String.format(" %.2f", Double.valueOf(calculeNative.asyncConvertToReal(Double.valueOf(price)))));
 
             Picasso.with(getContext()).load(image).into(imageView);
         }

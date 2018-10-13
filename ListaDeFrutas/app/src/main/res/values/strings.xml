@@ -48,5 +48,7 @@
     <string name="txt_hora">Hora:</string>
     <string name="txt_ultimos_4_digitos">Últimos 4 dígitos:</string>
     <string name="txt_nome_no_cartao">Nome:</string>
+    <string name="txt_real_simbolo">R$</string>
+    <string name="txt_dollar_simbolo">US$</string>
 
 </resources>
