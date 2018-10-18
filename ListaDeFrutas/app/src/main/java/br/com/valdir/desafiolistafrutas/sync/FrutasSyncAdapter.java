@@ -156,7 +156,6 @@ public class FrutasSyncAdapter extends AbstractThreadedSyncAdapter {
 
         Intent intent = new Intent(getContext(), FrutaDetalheActivity.class);
         Uri uri = FrutasContract.FrutaEntry.buildUriForFrutas(itemFruta.getId());
-//        Uri uri = FrutasContract.ProdutoEntry.buildUriForProdutos();
         intent.setData(uri);
 
         TaskStackBuilder stackBuilder = TaskStackBuilder.create(getContext());

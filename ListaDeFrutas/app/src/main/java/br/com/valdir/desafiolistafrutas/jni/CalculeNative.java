@@ -7,6 +7,4 @@ public class CalculeNative {
     }
 
     public native double asyncConvertToReal(double valueToConvert);
-
-    public native int subtrairJNI(int a, int b);
 }
